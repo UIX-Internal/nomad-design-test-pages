@@ -1,0 +1,30 @@
+@mixin GothamRoundedLight($font-size: 1px) {
+	font-family: GothamRounded;
+	font-weight: 300;
+	font-size: $font-size;
+}
+
+@mixin GothamRoundedMedium($font-size: 1px) {
+	font-family: GothamRounded;
+	font-weight: 500;
+	font-size: $font-size;
+}
+
+@mixin GothamRoundedBold($font-size: 1px) {
+	font-family: GothamRounded;
+	font-weight: 600;
+	font-size: $font-size;
+}
+@mixin GothamRoundedBook($font-size: 1px) {
+	font-family: GothamRounded;
+	font-weight: 400;
+	font-size: $font-size;
+}
+
+@mixin WebMinWdith() {
+	min-width: 1000px;
+}
+
+@mixin WebMaxWidth() {
+	max-width: 3200px;
+}
