@@ -11,6 +11,7 @@ function Home() {
     const [stage, setStage] = useState(0);
     const [data, setData] = useState(QuestContents)
     const [total, setTotal] = useState(0);
+    const [compare, setCompare] = useState(false)
     const [current, setCurrent] = useState({
         type_a: 0,
         type_b: 0,
@@ -32,15 +33,19 @@ function Home() {
         setScore(score + 1);
     }
     function hendleTarget(input: number, result: number) {
+        setCompare(true);
         if (input === result) {
             hendleScoreUp();
-            hendleStageUp();
             console.log("성공");
         }
         else {
-            hendleStageUp();
             console.log("실패");
         }
+    }
+
+    function hendleNext() {
+        setCompare(false);
+        hendleStageUp();
     }
     function hendleStageSetting() {
         data.map((value) => {
@@ -69,9 +74,11 @@ function Home() {
                         type_a={current.type_a}
                         type_b={current.type_b}
                         result={current.result}
+                        compare={compare}
                         hendleTarget={hendleTarget}
+                        hendleNext={hendleNext}
                     />
-                    <Inprogress score={score} />
+                    <Inprogress score={score} inprogress={stage} total={total} />
                 </div>
 
             </div>

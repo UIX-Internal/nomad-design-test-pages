@@ -40,7 +40,7 @@ export const QuestContents: IQuest[] = [
         id: 3,
         type_a: "강아지",
         type_b: "고양이",
-        result: 1,
+        result: 2,
     },
     {
         id: 2,

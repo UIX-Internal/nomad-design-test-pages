@@ -15,6 +15,10 @@
 			width: 320px;
 			height: auto;
 			p {
+				border-radius: 10px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
 				width: 100%;
 				height: 180px;
 				background-color: black;
@@ -23,6 +27,31 @@
 		.description {
 			@include GothamRoundedMedium(16px);
 			color: #000;
+		}
+		.result-btn-wrapper {
+			display: flex;
+			gap: 30px;
+			font-size: 24px;
+			.compare {
+				cursor: pointer;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 180px;
+				height: 50px;
+				border-radius: 10px;
+				background-color: #000;
+			}
+			.next {
+				cursor: pointer;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 110px;
+				height: 50px;
+				border-radius: 10px;
+				background-color: #000;
+			}
 		}
 	}
 }
