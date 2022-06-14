@@ -3,6 +3,7 @@ import Home from "Components/Pages/Home/Home";
 import PageNotFound from "Components/Pages/Error/PageNotFound";
 import React, { useEffect } from "react";
 import i18n from "Components/Module/i18n/locales";
+import Header from "Components/Pages/Home/Header/Header";
 
 function App() {
   let location = useLocation()
@@ -20,6 +21,7 @@ function App() {
   }, []);
   return (
     <div className="app-root">
+
       <Routes>
         <Route path="/" element={<Home></Home>} />
         <Route path="*" element={<PageNotFound></PageNotFound>} />

@@ -1,16 +1,15 @@
 .header-container {
 	width: 100%;
-	height: auto;
 	.header-wrapper {
 		@include GothamRoundedMedium(30px);
 		display: flex;
 		justify-content: center;
-		width: 500px;
-		height: auto;
+		margin-top: 30px;
 		color: #000;
 		.header-title {
-			width: 50%;
-			height: 50%;
+			width: 40%;
+		}
+		img {
 		}
 	}
 }

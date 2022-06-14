@@ -1,8 +1,8 @@
 
+import React, { useState, useCallback } from 'react';
 import { QuestContents, IQuest } from 'Components/Data/Contents/Quest';
-import React from 'react';
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+
 import "./Game.scss";
 
 interface IGame {
@@ -31,29 +31,87 @@ const Game: React.FC<IGame> = ({
         console.log(stage);
     })
     function hendleCompare() {
-
+        if (select === 1) {
+            setSelect(2);
+        }
+        else if (select === 2) {
+            setSelect(1);
+        }
     }
+    function toggleMouseUp() {
+        if (select === 1) {
+            setSelect(2);
+        }
+        else if (select === 2) {
+            setSelect(1);
+        }
+    }
+    function toggleMouseDown() {
+        if (select === 1) {
+            setSelect(2);
+        }
+        else if (select === 2) {
+            setSelect(1);
+        }
+    }
+
     return (
         <div className="game-container">
             <div className="game-wrapper">
-                <div className="game-select">
-                    <div className="select" ></div>
-                    <p onClick={() => { hendleTarget(1, result); }}>{type_a}</p>
+
+                <div className='select-container'>
+                    <div className="select-wrapper">
+                        <div className='box-front'>
+                            {select !== 2 &&
+                                <div className={'front ' + (compare ? "check" : "")}>
+                                    <img src={type_a} alt="" onClick={() => {
+                                        hendleTarget(1, result);
+                                        setSelect(1)
+                                    }} />
+                                </div>
+                            }
+                            {select !== 1 &&
+                                <div className={'back ' + (compare ? "check" : "")}>
+                                    <img src={type_b} alt="" onClick={() => {
+                                        hendleTarget(2, result);
+                                        setSelect(2)
+                                    }} />
+                                </div>
+                            }
+
+                        </div>
+                    </div>
                 </div>
-                <div className="game-select">
-                    <div className="select" ></div>
-                    <p onClick={() => { hendleTarget(2, result); }}>{type_b}</p>
-                </div>
+                {
+                    !compare
+                        ?
+                        <p className='description'>완벽한 디자인을 선택해주세요</p>
+                        :
+                        select === result ?
+                            <p className='description-compare'>정답입니다.</p>
+                            :
+                            <p className='description-compare'>틀렸습니다.</p>
+                }
+                {/* {compare === true &&
+                    select === result ?
+                    <p className='description-compare'>정답입니다.</p>
+                    :
+                    <p className='description-compare'>틀렸습니다.</p>
+                }
                 {compare === false &&
                     <p className='description'>완벽한 디자인을 선택해주세요</p>
-                }
+                } */}
+
 
                 {compare === true &&
                     <div className='result-btn-wrapper'>
-                        <div className='compare' onClick={hendleCompare}>
+                        <button className='compare' onTouchStart={toggleMouseUp} onTouchEnd={toggleMouseDown} onMouseUp={toggleMouseUp} onMouseDown={toggleMouseDown} /*onClick={hendleCompare}*/>
                             비교하기
-                        </div>
-                        <div className='next' onClick={hendleNext}>
+                        </button>
+                        <div className='next' onClick={() => {
+                            hendleNext();
+                            setSelect(0)
+                        }}>
                             다음
                         </div>
                     </div>

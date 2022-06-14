@@ -5,7 +5,10 @@ import './Home.scss';
 import Header from "./Header/Header"
 import Game from "./Game/Game"
 import Inprogress from "./Inprogress/Inprogress"
-
+// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+let vh = window.innerHeight * 0.01;
+// Then we set the value in the --vh custom property to the root of the document
+document.documentElement.style.setProperty('--vh', `${vh}px`);
 function Home() {
     const [score, setScore] = useState(0);
     const [stage, setStage] = useState(0);
@@ -13,8 +16,8 @@ function Home() {
     const [total, setTotal] = useState(0);
     const [compare, setCompare] = useState(false)
     const [current, setCurrent] = useState({
-        type_a: 0,
-        type_b: 0,
+        type_a: "",
+        type_b: "",
         result: 0,
     })
 
@@ -25,6 +28,9 @@ function Home() {
     useEffect(() => {
         console.log(current)
     }, [current])
+    useEffect(() => {
+        console.log("score : " + score)
+    }, [score])
     function hendleStageUp() {
         setStage(stage + 1);
         hendleStageSetting()
@@ -34,11 +40,11 @@ function Home() {
     }
     function hendleTarget(input: number, result: number) {
         setCompare(true);
-        if (input === result) {
+        if (!compare && input === result) {
             hendleScoreUp();
             console.log("성공");
         }
-        else {
+        else if (!compare) {
             console.log("실패");
         }
     }
@@ -65,10 +71,9 @@ function Home() {
     return (
         <>
             <div className="home-container">
-
                 <div className="home-wrapper">
-                    <Header score={score} />
-                    <Game
+                    <Header />
+                    {!(total <= stage) && <Game
                         score={score}
                         stage={stage}
                         type_a={current.type_a}
@@ -78,7 +83,9 @@ function Home() {
                         hendleTarget={hendleTarget}
                         hendleNext={hendleNext}
                     />
-                    <Inprogress score={score} inprogress={stage} total={total} />
+                    }
+
+                    <Inprogress score={score} inprogress={stage - 1} total={total - 1} />
                 </div>
 
             </div>
